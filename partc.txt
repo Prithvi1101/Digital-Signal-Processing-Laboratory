@@ -1,0 +1,37 @@
+clc;clear all;close all;
+dt = 0.00005;
+t = 0:dt:1;
+Xa = sin(20*pi*t);
+Ts1 = 0.025;Fs1 = 1/Ts1;n = -25:25;
+x1n = sin(20*pi*n*Ts1);
+
+Ts2 = 0.022;Fs2 = 1/Ts2;n = -25:25;
+x2n = sin(20*pi*n*Ts2);
+
+Ts3 = 0.01;Fs3 = 1/Ts3;n = -25:25;
+x3n = sin(20*pi*n*Ts3);
+tr = 0:dt:1;
+nTs1 = n * Ts1;
+xr1 = x1n * sinc(Fs1 * (ones(length(n), 1) * tr - nTs1' * ones(1, length(tr))));
+subplot(3, 1, 1);
+plot(tr*1000, xr1);
+title('Reconstructed Signal for a');xlabel('Time');ylabel('Amplitude');
+nTs2 = n * Ts2;
+xr2 = x2n * sinc(Fs2 * (ones(length(n), 1) * tr - nTs2' * ones(1, length(tr))));
+subplot(3, 1, 2);
+plot(tr*1000, xr2);
+title('Reconstructed Signal for b');xlabel('Time');ylabel('Amplitude');
+
+nTs3 = n * Ts3;
+xr3 = x3n * sinc(Fs3 * (ones(length(n), 1) * tr - nTs3' * ones(1, length(tr))));
+subplot(3, 1, 3);
+plot(tr*1000, xr3);
+title('Reconstructed Signal for c');xlabel('Time');ylabel('Amplitude');
+
+error1 = max(abs(xr1 - Xa));
+error2 = max(abs(xr2 - Xa));
+error3 = max(abs(xr3 - Xa));
+
+disp(['Maximum error for Sampled Signal a: ', num2str(error1)]);
+disp(['Maximum error for Sampled Signal b: ', num2str(error2)]);
+disp(['Maximum error for Sampled Signal c: ', num2str(error3)]);

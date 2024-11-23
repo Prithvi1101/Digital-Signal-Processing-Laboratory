@@ -1,0 +1,23 @@
+%Prithviraj_2254901101
+clc;clear all;close all;
+n=-10:1:10;
+no=0;
+u=(n-no>=0);
+subplot(2,2,1);
+stem(n,u);
+xlabel('Time');
+ylabel('Amplitude');
+title('Unit Step Signal');
+u=(n-no==0);
+subplot(2,2,2);
+stem(n,u);
+xlabel('Time');
+ylabel('Amplitude');
+title('Unit Impulse Signal');
+u=n.*(n-no>=0);
+subplot(2,2,3);
+stem(n,u);
+xlabel('Time');
+ylabel('Amplitude');
+title('Ramp Signal');
+grid on;
