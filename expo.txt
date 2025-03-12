@@ -1,0 +1,19 @@
+clc
+clear all;
+close all;
+n=-5:.2:5;
+no=-2;
+unit=(n-no==0);
+
+unit=(n+15>=0)-(n-10>=0);
+ %subplot(3,3,3);
+%stem(n,ramp);
+
+ramp=-abs(n);
+%subplot(3,3,4);
+%stem(n,ramp);
+
+expo=n.*exp(abs(n));
+%subplot(3,3,5);
+stem(n,expo);
+
